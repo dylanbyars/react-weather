@@ -1,16 +1,127 @@
+/* Color Pallette */
+
 body {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
+  animation: colorchange 50s;
+  /* Chrome and Safari */
+  -webkit-animation: colorchange 20s infinite;
 }
 
-.weather-display {
-  border: solid;
+.instructions {
+  position: fixed;
+  top: 8vh;
+  max-width: 80%;
+  text-align: center;
+  font-family: sans-serif;
+  color: #30332E;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+@keyframes colorchange {
+  0%,
+  100% {
+    background: #F1988E;
+  }
+  50% {
+    background: #6EB4D1;
+  }
+}
+
+/* Chrome and Safari */
+@-webkit-keyframes colorchange {
+  0%,
+  100% {
+    background: #F1988E;
+  }
+  50% {
+    background: #6EB4D1;
+  }
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 2px;
+  height: 30px;
+  font-size: 21px;
+  text-align: center;
+  border: solid 1px #dcdcdc;
+  /* Not sure if these next 2 properties do anything... */
+  appearance: none;
+  box-shadow: none;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.search-input:focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.display__container {
+  margin-top: 25px;
   display: flex;
   height: 40vh;
+  width: 100%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: #F4FAFF;
+  border-radius: 5px;
+  border: solid;
+}
+
+.display__location {
+  font-size: 21px;
+}
+
+.display__temps {
+  display: flex;
+  justify-content: space-around;
+  width: 85%;
+  font-size: 31px;
+}
+
+.display__temps--metric {}
+
+.display__temps--imperial {}
+
+.display__description {}
+
+.display__icon {}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: sans-serif;
+}
+
+footer a {
+  text-decoration: none;
+  color: inherit;
+  transition: 200ms;
+}
+
+footer a:hover {
+  color: #BADA55;
 }

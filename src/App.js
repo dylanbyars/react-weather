@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { SearchInput } from './components/search_input';
+import SearchInput from './components/search_input';
 import { WeatherDisplay } from './components/weather_display';
 
 class App extends React.Component {
@@ -45,7 +45,7 @@ class App extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="widget">
         <SearchInput launchSearch={this.launchSearch} />
         { this.state.active && <WeatherDisplay data={this.state} /> }
       </div>
