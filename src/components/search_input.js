@@ -1,4 +1,5 @@
 import React from 'react';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
 class SearchInput extends React.Component {
   // initialize this muh
@@ -6,55 +7,51 @@ class SearchInput extends React.Component {
     super(props)
 
     this.state = {
-      value: ''
+      place: ''
     }
 
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.onChange = place => this.setState({ place })
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  //   componentDidMount() {
-  //     // automatic geolocation feature. Needs work. Or elimination. 
-  //     const success = (response) => {
-  //       return {
-  //         lat: response.coords.latitude,
-  //         lon: response.coords.longitude
-  //       }
-  //     }
+  handleSubmit(e) {
+    console.log('SUBMIT PRESSED!')
+    // stop the browser from refreshing like it wants to with a standard form event
+    e.preventDefault()
 
-  //     const error = (error) => {
-  //       console.log(error)
-  //     }
+    // get the coordinates of the searched place
+    const { place } = this.state
 
-  //     let coords = window.navigator.geolocation.getCurrentPosition(success, error)
+    geocodeByAddress(place,  (err, { lat, lng }) => {
+      if (err) {
+        console.log('Oh no!', err)
+      }
 
-  //     console.log(coords)
-  //   }
+      console.log(`Yay! got latitude and longitude for ${place}`, { lat, lng })
+    })
 
-  handleInputChange(e) {
-    // the state of this component is the single point of truth for the text input's value
+      // send the value stored in SearchBar's state to the launchSearch function defined in <App />
+    this.props.launchSearch(this.state.place)
+      // set the text input back to an empty field for easy searching of another location
     this.setState({
-      value: e.target.value
+      place: ''
     })
   }
 
-  handleSubmit(e) {
-    // stop the browser from refreshing like it wants to with a standard form event
-    e.preventDefault()
-      // send the value stored in SearchBar's state to the launchSearch function defined in <App />
-    this.props.launchSearch(this.state.value)
-      // set the text input back to an empty field for easy searching of another location
-    this.setState({
-        value: ''
-      })
-      // all this just to launch the search when you press enter... worth it
-  }
-
   render() {
+
+  const AutocompleteItem = ({ suggestion }) => (<div><i className="fa fa-map-marker"/>{suggestion}</div>)
+
+
     return (
       <form onSubmit={this.handleSubmit}>
-        <input className="search-input" type="text" onChange={this.handleInputChange} value={this.state.value} placeholder="Search for a city..." />
-        {/*<button>Search</button>*/}
+        <PlacesAutocomplete 
+          autocompleteItem={AutocompleteItem}
+          className="search-input" 
+          onChange={this.onChange} 
+          value={this.state.place} 
+          placeholder="Search for a city..." 
+          hideLabel />
       </form>
     )
   }
