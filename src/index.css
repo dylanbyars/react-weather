@@ -1,4 +1,13 @@
-/* Color Pallette */
+/* Color Pallette goe here */
+
+:root {
+  --red: #F1988E;
+  --blue: #6EB4D1;
+  --black: #30332E;
+  --grey: #dcdcdc;
+  --white: #F4FAFF;
+  --bad-ass-green: #BADA55;
+}
 
 body {
   display: flex;
@@ -10,6 +19,7 @@ body {
   animation: colorchange 50s;
   /* Chrome and Safari */
   -webkit-animation: colorchange 20s infinite;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .instructions {
@@ -17,19 +27,20 @@ body {
   top: 8vh;
   max-width: 80%;
   text-align: center;
-  font-family: sans-serif;
-  color: #30332E;
+  color: var(--black);
   font-size: 19px;
   line-height: 1.2;
+  letter-spacing: 1.1;
+  font-weight: 400;
 }
 
 @keyframes colorchange {
   0%,
   100% {
-    background: #F1988E;
+    background: var(--red);
   }
   50% {
-    background: #6EB4D1;
+    background: var(--blue);
   }
 }
 
@@ -37,10 +48,10 @@ body {
 @-webkit-keyframes colorchange {
   0%,
   100% {
-    background: #F1988E;
+    background: var(--red);
   }
   50% {
-    background: #6EB4D1;
+    background: var(--blue);
   }
 }
 
@@ -50,6 +61,7 @@ body {
   min-width: 280px;
   justify-content: center;
   align-items: center;
+  font-weight: 300;
 }
 
 form {
@@ -65,7 +77,7 @@ form {
   height: 30px;
   font-size: 21px;
   text-align: center;
-  border: solid 1px #dcdcdc;
+  border: solid 1px var(--grey);
   /* Not sure if these next 2 properties do anything... */
   appearance: none;
   box-shadow: none;
@@ -85,13 +97,13 @@ form {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #F4FAFF;
+  background-color: var(--white);
   border-radius: 5px;
   border: solid;
 }
 
 .display__location {
-  font-size: 21px;
+  font-size: 23px;
 }
 
 .display__temps {
@@ -113,7 +125,7 @@ footer {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-family: sans-serif;
+  font-weight: 300;
 }
 
 footer a {
@@ -123,5 +135,5 @@ footer a {
 }
 
 footer a:hover {
-  color: #BADA55;
+  color: var(--bad-ass-green);
 }
